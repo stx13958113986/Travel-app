@@ -1,7 +1,7 @@
 <template>
     <div class="icons">
     <swiper>
-       <swiper-slide v-for="(page, index) of pages">
+       <swiper-slide v-for="page of pages" :key="page.index">
        <div class="icon" v-for="item of page" :key="item.id">
            <div class="icon-img">
              <img class="icon-img-content" :src="item.imgUrl">
@@ -78,6 +78,8 @@ export default{
 .icons >>> .swiper-container
   height:0
   padding-bottom:50%
+.icons
+  margin-top .1rem
 .icon
   height 0
   position relative
