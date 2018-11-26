@@ -1,9 +1,9 @@
 <template>
    <div>
         <city-header></city-header>
-        <city-search></city-search>
-        <city-list :city="cities" :hot="hotCities"></city-list>
-        <city-alphabet :city="cities"></city-alphabet>
+        <city-search :city="cities"></city-search>
+        <city-list :city="cities" :hot="hotCities" :letter="letter"></city-list>
+        <city-alphabet :city="cities" @change="handleChange"></city-alphabet>
    </div>
 </template>
 <script>
@@ -23,7 +23,8 @@ export default {
   data () {
     return {
       cities: {},
-      hotCities: []
+      hotCities: [],
+      letter: ''
     }
   },
   methods: {
@@ -32,11 +33,13 @@ export default {
         .then((response) => {
           this.cities = response.data.data.cities
           this.hotCities = response.data.data.hotCities
-          console.log(this.cities)
         })
         .catch((error) => {
           console.log(error)
         })
+    },
+    handleChange (letter) {
+      this.letter = letter
     }
   },
   mounted () {
